@@ -76,6 +76,44 @@ We used the WAMP stack because it's easy to set up and works well for our projec
 
 ---
 
+## ⚙️ How to Set Up the Required Dependencies and Variables
+
+1. ### Tailwind (through Node)
+
+    Setting this up may only be necessary if Tailwind's utility classes don't render correctly.
+- Go to https://nodejs.org/en/download and download node.js (LTS versions are recommended).
+- Open the downloaded executable or zip and install node.js on your computer.
+- Go to the **Command Line Interface (CLI)** and the project's directory and type in **'npm -v'** to get your node's version as a way to test it.
+- Since **'package.json'** is already initialized for this repository, we can move on to the next step.
+- Go to https://tailwindcss.com/docs/installation/tailwind-cli and follow the procedure (While still on the project's directory).
+- Test if the utility classes or stylings render as they should.
+
+2. ### PHPMailer (through Composer)
+
+    This is important as the sending of emails in our authentication processes relies on PHPMailer.
+- Go to https://getcomposer.org/download/ to download and run composer on your computer.
+- Run the installation wizard and choose the php file based on your chosen local environment
+- If you're using XAMPP as instructed, go to it's directory, then click the php folder, and choose **'php.exe'**.
+- Open your computer's CLI and go to the project's directory, then type in **'composer'** to get a log of your composer as a way to test it.
+- Then, type in **'composer require phpmailer/phpmailer'** to install phpmailer on the directory.
+- Change the directory accordingly to the project repository's structure.
+
+3. ### Environment Variables
+
+     You should've noticed the **'.env.example'** on the project's repository, this is part of the process of sending emails.
+- Rename the file to '.env' and check the contents
+- These variables are utilized in the **'src/controllers/functions.php'** file in relation to the email sending process.
+- The server and ports have default values but you can change them accordingly.
+- As for the username, and password, you have to utilize your own email and it's app password.
+- What is an app password? An **app password** is one that is utilized for temporary access of an account when using it on a device that doesn't support modern security measures.
+- This can be attained through your google account and by turning on Two-Factor Authentication, and going to https://myaccount.google.com/apppasswords to create one and copy it.
+- Finally paste the necessary values on your **'.env'** file and test the functionality.
+- You might've also noticed the hardcoded values on the **'functions.php'**, setting the **setFrom** and **addReplyTo** with default values.
+- To have an authentic experience by sending emails through our dedicated email **'acadexa.up@gmail.com'**, you may request to use it as an alias for your account.
+- Here, you can set up your host, port, and connection configurations (Note that the password refers to the app password you created and will use).
+
+---
+
 ## 🚀 What We Plan to Improve
 
 In the future, we want to add:
