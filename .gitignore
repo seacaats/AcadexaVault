@@ -1,0 +1,19 @@
+# Logs
+logs
+*.log
+
+# Environment Variables
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+!.env.example
+
+# Temporary Files
+*.tmp
+*.temp
+
+# Dependency directories
+node_modules/
+vendor/
