@@ -122,8 +122,9 @@ if(isset($_GET['confirmation-token'])) {
         header("Location: ../pages/auth/confirm_acc.php?confirmation-token=" . urlencode($token));
         exit();
     } else {
-        $_SESSION['link-expiration'] = 'The link you were redirected to <br> has been expired. <br><br>
-                                        Please <a href="signup.php">sign up again</a>.';
+        $_SESSION['link-expiration'] = 'The link you were redirected to has been expired.
+                                        Please sign up<a href="reset_req.php" class=
+                                        "text-blue-700 hover:underline">again.</a>';
         header("Location: ../pages/auth/confirm_acc.php");
         exit();
     }
@@ -156,8 +157,9 @@ if(isset($_POST['confirm-account'])) {
                 exit();
             }
     } else {
-        $_SESSION['link-expiration'] = 'The link you were redirected to <br> has been expired. <br><br>
-                                        Please <a href="signup.php">sign up again</a>.';
+        $_SESSION['link-expiration'] = 'The link you were redirected to has been expired.
+                                        Please sign up<a href="reset_req.php" class=
+                                        "text-blue-700 hover:underline">again.</a>';
         header("Location: ../pages/auth/confirm_acc.php");
         exit();
     }
@@ -188,12 +190,12 @@ if (isset($_POST['reset-form'])) {
             END;
 
             if (sendEmail($email, 'Password Reset', $body)) {
-                $_SESSION['email-sent'] = 'An email to continue the process has been sent, <br>
+                $_SESSION['email-sent'] = 'An email to continue the process has been sent,
                                             please check your email.';
                 header("Location: ../pages/auth/reset_req.php");
                 exit();
             } else {
-                $_SESSION['reset-error'] = 'Failed to continue the password reset <br> 
+                $_SESSION['reset-error'] = 'Failed to continue the password reset 
                                             process. Please try again';
                 header("Location: ../pages/auth/reset_req.php");
                 exit();
@@ -220,8 +222,9 @@ if (isset($_GET['reset-token'])) {
         header("Location: ../pages/auth/reset_pw.php?reset-token=" . urlencode($token));
         exit();
     } else {
-        $_SESSION['link-expiration'] = 'The link you were redirected to <br> has been expired. <br><br>
-                                        <a href="reset_req.php">Please request a new one.</a>';
+        $_SESSION['link-expiration'] = 'The link you were redirected to <br> has been expired.
+                                        Please<a href="reset_req.php" class="text-blue-700 hover:underline">
+                                        request a new </a>one.';
         header("Location: ../pages/auth/reset_pw.php");
         exit();
     }
@@ -263,7 +266,8 @@ if (isset($_POST['reset-password'])) {
         }
     } else {
         $_SESSION['link-expiration'] = 'The link you were redirected to <br> has been expired. <br><br>
-                                        Please <a href="reset_req.php">request</a> a new one.';
+                                        Please<a href="reset_req.php" class="text-blue-700 hover:underline">
+                                        request a new </a>one.';
         header("Location: ../pages/auth/reset_pw.php");
         exit();
     }

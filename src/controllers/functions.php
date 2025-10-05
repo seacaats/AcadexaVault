@@ -127,7 +127,7 @@ function showSuccess($success) {
 }
 
 function showMessage($message) {
-    return !empty($message) ? "<p>$message</p>" : '';
+    return !empty($message) ? "<p class='message'>$message</p>" : '';
 }
 
 ?>

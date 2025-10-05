@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato');
 
-* {
-    font-family: 'Lato', sans-serif;
+body {
+  font-family: 'Lato', sans-serif;
 }
 
 :root {
@@ -13,6 +13,14 @@
     color: #a42834;
     text-align: center;
     margin-bottom: 20px;
+}
+
+.message {
+  font-size: 1.1rem;
+  color: #1f2937;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 1rem;
 }
 
 #auth footer {

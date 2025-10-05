@@ -13,8 +13,13 @@
         $error_fields = [$error_fields];
     }
 
-    unset($_SESSION['reset-success'], $_SESSION['reset-error'], $_SESSION['link-expiration'], $_SESSION['error-field']);
- 
+    if (empty($token) && empty($reset_success) && empty($reset_error) && empty($expired_link)) {
+        header('Location: reset_req.php');
+        exit;
+    }    
+
+    unset($_SESSION['reset-success'], $_SESSION['reset-error'], $_SESSION['error-field'], $_SESSION['link-expiration']);
+
 ?>
 
 <!DOCTYPE html>
@@ -22,42 +27,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="auth_main.css" rel="stylesheet" type="text/css"/>
-    <script src="auth.js"></script>
+    <link href="../../output.css" rel="stylesheet" />
+    <link href="../../styles.css" rel="stylesheet"/>
     <title>Change your password</title>
 </head>
-<body id="reset-pw">
-    <div class="container">
-        <div class="container-box" id="reset-password">
-            <form action="../../controllers/auth_handler.php" method="post"> 
+<body id="auth" class="flex flex-col min-h-screen bg-gradient-to-b from-blue-900 via-gray-700 to-green-900">
+    <main class="flex flex-1 justify-center items-center w-full pt-4 pb-4">
+        <div id="pw-reset" class="bg-white rounded-xl p-8 shadow-2xl max-w-sm w-full">
+            <form action="../../controllers/auth_handler.php" method="post" class="flex flex-col items-center">
                 <input type="hidden" name="reset-token" value="<?= htmlspecialchars($token) ?>">
-                <img src="../../../assets/images/University_of_Pangasinan_logo.png"/> 
-                <h1>Change your password</h1>
-                <?php if ($expired_link) : ?>
-                    <?= showMessage($expired_link) ?>
+                <img src="../../../assets/images/University_of_Pangasinan_logo.png" alt="Repository Logo" class="w-2/5 mb-1">
+                <h1 class="text-center font-medium text-2xl mb-2">Change your Password</h1>
+                <div class="w-full">
+                    <?php if ($reset_success) : ?>
+                        <?= showMessage($reset_success) ?>
 
-                <?php elseif ($reset_success) : ?> 
-                    <?= showMessage($reset_success) ?>
+                        <div class="text-center text-base">
+                            <p class="mb-2.5">Return to
+                                <a href="login.php" class="text-blue-700 hover:underline"><span>sign in</span></a>
+                            </p>
+                        </div>
 
-                    <div class="form-footer">
-                        <p>Return to <a href="login.php">sign in</a></p>
-                    </div>
+                    <?php elseif ($expired_link || !$token) : ?>
+                        <?= showMessage($expired_link) ?>
                     
-                <?php else : ?>
-                    <p>Passwords should be at least 8 characters long <br> and contain the following:
-                    1 lower/upper case letter, <br> 1 number, and 1 special character</p>
-                
-                    <label for="password">New password</label>
-                    <input type="password" name="password" class="<?= in_array('password', $error_fields) ? 'input-error' : '' ?>" placeholder="Enter your new password" required>
-                    
-                    <label for="password-confirmation">Confirm password</label>
-                    <input type="password" name="password-confirmation" placeholder="Re-enter your new password" required>
-                    
-                    <?= showError($reset_error) ?>
-                    <button type="submit" class="btn-submit" name="reset-password">Submit</button>
-                <?php endif ?>
-            </form> 
+                    <?php else : ?>
+                        <p class="text-center text-gray-800 font-normal text-md mb-4">Passwords should be at least 8 characters and 
+                            contain the following: 1 upper/lower case letter, 1 number, and 1 special character.</p>
+
+                        <label for="password" class="block text-gray-800 font-normal text-md mb-1">New password</label>
+                        <input type="password" name="password" placeholder="Enter your new password" class="w-full px-3 py-2 border 
+                            border-gray-500 rounded-lg transition-colors duration-300 focus:outline-none focus:border-blue-500 mb-5">
+
+                        <label for="password" class="block text-gray-800 font-normal text-md mb-1">Confirm password</label>
+                        <input type="password" name="password-confirmation" placeholder="Re-enter your new password" class="w-full px-3 py-2 
+                            border border-gray-500 rounded-lg transition-colors duration-300 focus:outline-none focus:border-blue-500 mb-5">
+
+                        <?= showError($reset_error) ?>
+
+                        <button type="submit" name="reset-password" class="block w-3/4 max-w-sm mx-auto py-3 rounded-md bg-green-700 hover:bg-green-800 
+                            text-white font-semibold text-base cursor-pointer transition-colors mb-5">Submit</button>
+
+                    <?php endif; ?>
+                </div>
+            </form>
         </div>
-    </div>
+    </main>
+
+    <?php include('../../pages/commons/footer.html') ?>
 </body>
 </html>
