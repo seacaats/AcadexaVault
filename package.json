@@ -2,5 +2,23 @@
   "dependencies": {
     "@tailwindcss/cli": "^4.1.14",
     "tailwindcss": "^4.1.14"
-  }
+  },
+  "name": "acadexavault",
+  "version": "1.0.0",
+  "description": "AcadexaVault is a web-based system that we created for PHINMA–University of Pangasinan. It serves as a digital archive where students and faculty can upload and access research papers, theses, and other academic works.",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seacaats/AcadexaVault.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/seacaats/AcadexaVault/issues"
+  },
+  "homepage": "https://github.com/seacaats/AcadexaVault#readme"
 }
